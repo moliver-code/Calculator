@@ -1,0 +1,124 @@
+* {
+    outline-style: solid; 
+    outline-color: red;
+    font-size: 32px;
+}
+.main {
+    display: grid;
+    justify-content: center;
+    align-content: space-around;
+    align-items: center;
+    padding: auto;
+    height: 100vh;
+}
+
+
+
+.calculator{
+    display: grid;
+    grid-template-columns: 125px 125px 125px 125px ;
+    /* grid-template-columns: repeat(4, 1fr); */
+    /* grid-template-rows: repeat(7, fr); */
+    /* outline-style: solid;
+    outline-color: red; */
+    height: 800px;
+    width: 500px;
+    grid-template-areas:
+    "screen screen screen screen"
+    "screen screen screen screen"
+    "clear clear delete delete"
+    "seven eight nine divide"
+    "four five six mulitply"
+    "one two three subtract"
+    "decimal zero equals add";
+    justify-content: center;
+    /* align-content: space-between; */
+}
+
+.calculator>div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /* margin: 0 0; */
+} 
+
+
+.calculator>.screen {
+    display: flex;
+    flex-wrap: nowrap;
+    grid-area: screen;
+    font-size: 90px;
+    justify-content: end;
+}
+
+.clear {
+grid-area: clear;
+}
+
+.delete {
+grid-area: delete;
+}
+
+.seven {
+grid-area: seven;
+}
+
+.eight {
+grid-area: eight;
+}
+
+.nine {
+grid-area: nine;
+}
+
+.divide {
+grid-area: divide;
+}
+
+.four {
+grid-area: four;
+}
+
+.five {
+grid-area: five;
+}
+
+.six {
+grid-area: six;
+}
+
+.mulitply {
+grid-area: mulitply;
+}
+
+.one {
+grid-area: one;
+}
+
+.two {
+grid-area: two;
+}
+
+.three {
+grid-area: three;
+}
+
+.subtract {
+grid-area: subtract;
+}
+
+.decimal {
+grid-area: decimal;
+}
+
+.zero {
+grid-area: zero;
+}
+
+.equals {
+grid-area: equals;
+}
+
+.add {
+grid-area: add;
+};
