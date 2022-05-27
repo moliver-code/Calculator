@@ -1,6 +1,6 @@
 * {
-    outline-style: solid; 
-    outline-color: red;
+    /* outline-style: solid; 
+    outline-color: red; */
     font-size: 32px;
 }
 .main {
@@ -12,9 +12,9 @@
     height: 100vh;
 }
 
-
-
 .calculator{
+    outline-style: solid; 
+    outline-color: red;
     display: grid;
     grid-template-columns: 125px 125px 125px 125px ;
     /* grid-template-columns: repeat(4, 1fr); */
@@ -22,7 +22,7 @@
     /* outline-style: solid;
     outline-color: red; */
     height: 800px;
-    width: 500px;
+    /* width: 500px; */
     grid-template-areas:
     "screen screen screen screen"
     "screen screen screen screen"
@@ -33,30 +33,53 @@
     "decimal zero equals add";
     justify-content: center;
     /* align-content: space-between; */
+    background-color: rgb(223, 223, 223);
+    border-radius: 8px;
 }
 
 .calculator>div {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    /* margin: 0 0; */
+    margin: 10px;
+    background-color: rgb(246, 247, 253);
+    border-radius: 8px;
 } 
 
+.calculator>div:not(.screen) {
+    /* color: blue; */
+}
+.calculator>div:hover {
+    background-color: rgb(177, 177, 177);
+}
 
+.calculator>.screen:hover {
+    background-color: rgb(246, 247, 253);
+}
 .calculator>.screen {
     display: flex;
     flex-wrap: nowrap;
     grid-area: screen;
-    font-size: 90px;
+    font-size: 85px;
     justify-content: end;
+    padding-right: 13px;
+    height: 211.250px;
+    margin-bottom: 0px;
 }
 
-.clear {
+.calculator>.clear {
 grid-area: clear;
+background-color: rgb(250, 137, 133);
+
 }
 
-.delete {
-grid-area: delete;
+.calculator>.delete {
+    grid-area: delete;
+    background-color: rgb(250, 137, 133);
+}
+
+.calculator>.divide, .calculator>.mulitply, .calculator>.subtract, .calculator>.add{
+    background-color: rgb(204, 209, 255);
 }
 
 .seven {
@@ -122,3 +145,8 @@ grid-area: equals;
 .add {
 grid-area: add;
 };
+
+.number {
+    color: red !important;
+    border-style: solid;
+}
