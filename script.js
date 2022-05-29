@@ -2,7 +2,7 @@ let firstOperand = '' ;
 let secondOperand = '' ;
 let operator;
 let result;
-let focusOnSecondOperand;
+let focusOnSecondOperand; 
 
 var compute ={
     '+': function(firstOperand, secondOperand) {return firstOperand + secondOperand},
@@ -49,21 +49,28 @@ const operatorsList = [...document.querySelectorAll('.operator')]
 
 operatorsList.forEach(element => {
     element.addEventListener('click', e => {
+        if (firstOperand && secondOperand && operator) {
+            solve();
+            screenText.textContent = firstOperand;
+        }
         focusOnSecondOperand = 1;
         operator = element.getAttribute('action');
-        screenText.textContent = element.textContent;
     })
 })
 
-const equalsButton = document.querySelector('.equals')
-equalsButton.addEventListener('click', e => {
+function solve(e) {
     if (screenText.textContent != "Universe Imploding...") {
         result = parseFloat(((compute[operator](Number(firstOperand),Number(secondOperand))).toPrecision(9)));
         firstOperand = result;
         secondOperand = '';
         screenText.textContent = result;
+        return
     }
-})
+}
+
+const equalsButton = document.querySelector('.equals')
+equalsButton.addEventListener('click', e => solve(e) 
+)
 
 const clearButton = document.querySelector('.clear')
 clearButton.addEventListener('click', e => {
