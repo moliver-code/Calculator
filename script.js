@@ -1,31 +1,37 @@
 let firstOperand = '' ;
 let secondOperand = '' ;
 let operator;
-// let startingScreen; 
 let result;
 let focusOnSecondOperand;
-let currentResult = ''
 
 var compute ={
     '+': function(firstOperand, secondOperand) {return firstOperand + secondOperand},
     '-': function(firstOperand, secondOperand) {return firstOperand - secondOperand},
     '*': function(firstOperand, secondOperand) {return firstOperand * secondOperand},
     '/': function(firstOperand, secondOperand) {
-        if (secondOperand === 0) {return "Universe Imploding..."}
+        if (secondOperand == 0) {
+            secondOperand = '' ;
+            screenText.textContent = "Universe Imploding...";
+            result = '';
+            operator = '';
+            focusOnSecondOperand = '';
+            firstOperand = '' ;
+            return "Universe Imploding...";    
+        }
         return firstOperand / secondOperand},
 };
 
-// console.log(compute['/'](2,3));
-
 let screenText = document.getElementsByClassName('screen')[0]
-// console.log(screenText)
-// screenText.textContent = startingScreen
 
 const numbersList = [...document.querySelectorAll('.number')]
-// console.log(numbersList)
 
 numbersList.forEach(element => {
     element.addEventListener('click', e => {
+        if (screenText.textContent == "Universe Imploding...") {
+            firstOperand = '';
+            secondOperand = '';
+            screenText.textContent = result;
+        }
         if (!focusOnSecondOperand) {
             firstOperand += element.innerText;
             screenText.textContent = firstOperand
@@ -51,11 +57,12 @@ operatorsList.forEach(element => {
 
 const equalsButton = document.querySelector('.equals')
 equalsButton.addEventListener('click', e => {
-    // result = parseFloat((compute[operator](Number(firstOperand),Number(secondOperand))).toFixed(9));
-    result = ((compute[operator](Number(firstOperand),Number(secondOperand))).toPrecision(9));
-    firstOperand = result;
-    secondOperand = '';
-    screenText.textContent = result;
+    if (screenText.textContent != "Universe Imploding...") {
+        result = parseFloat(((compute[operator](Number(firstOperand),Number(secondOperand))).toPrecision(9)));
+        firstOperand = result;
+        secondOperand = '';
+        screenText.textContent = result;
+    }
 })
 
 const clearButton = document.querySelector('.clear')
@@ -71,5 +78,8 @@ const deleteButton = document.querySelector('.delete');
 deleteButton.addEventListener('click', e => {
     let trimmedScreenText = screenText.innerText.slice(0, -1)
     screenText.innerText = trimmedScreenText;
-    secondOperand = secondOperand.slice(0, -1);
+    if (!focusOnSecondOperand) {firstOperand = firstOperand.slice(0, -1);
+    }
+    if (focusOnSecondOperand) {secondOperand = secondOperand.slice(0, -1);
+    }
 })
